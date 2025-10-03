@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Estático y Fijo</title>
+    <!-- Carga de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configuración de la fuente Inter -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f7f7;
+        }
+        .item-row {
+            transition: background-color 0.1s;
+        }
+        .item-row:hover {
+            background-color: #fef2f2; /* Un rojo muy suave al pasar el mouse */
+        }
+        /* Ajuste de padding al cuerpo para que el contenido no quede oculto por los elementos fijos */
+        body {
+            padding-top: 104px; /* Altura combinada del header (64px) + banner de fritas (40px) */
+            padding-bottom: 56px; /* Altura del footer de Buen Provecho (56px) */
+        }
+        /* Eliminar scrollbar de body para que el scroll solo esté en el contenedor principal si es necesario */
+        html {
+            overflow-y: scroll;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Encabezado Fijo (Menú del Local) -->
+    <header class="bg-red-600 p-4 shadow-xl fixed top-0 left-0 w-full z-20">
+        <div class="max-w-xl mx-auto">
+            <h1 class="text-3xl font-extrabold text-white text-center">Menú del Local</h1>
+        </div>
+    </header>
+
+    <!-- Banner de Fritas Siempre Visible (Fijo) -->
+    <div class="bg-yellow-400 p-2 shadow-md fixed top-16 left-0 w-full z-20">
+        <p class="text-lg font-bold text-center text-gray-800">
+            ⭐ ¡TODO SALE CON PAPAS FRITAS! 🍟
+        </p>
+    </div>
+
+    <!-- Contenedor Principal de Contenido (Asegura el centrado y el margen) -->
+    <div class="max-w-xl mx-auto bg-white shadow-xl">
+        
+        <!-- Contenido del Menú -->
+        <div id="menu-container" class="p-4 sm:p-6">
+            <!-- El menú estático se renderizará aquí -->
+        </div>
+    </div>
+
+    <!-- Pie de Página Fijo (Buen Provecho) -->
+    <footer class="bg-red-600 p-4 shadow-inner fixed bottom-0 left-0 w-full z-20">
+        <p class="text-lg font-semibold text-white text-center">
+            ¡Gracias por su visita! ¡Buen Provecho! 🥳
+        </p>
+    </footer>
+
+    <script>
+        // Definición de los datos del menú
+        const menuData = [
+            {
+                category: "LOMITOS",
+                items: [
+                    { name: "Lomito simple", price: 6000 },
+                    { name: "Lomito completo", price: 6500 },
+                    { name: "Lomito cheddar", price: 7000 },
+                    { name: "Lomito caramelizado", price: 7000 }
+                ]
+            },
+            {
+                category: "MILANESAS",
+                items: [
+                    { name: "Mila simple", price: 5300 },
+                    { name: "Mila completa", price: 6000 },
+                    { name: "Mila cheddar", price: 6500 }
+                ]
+            },
+            {
+                category: "HAMBURGUESAS",
+                items: [
+                    { name: "Hamburguesa común", price: 4000 },
+                    { name: "Hamburguesa completa", price: 4500 }
+                ]
+            },
+            {
+                category: "PROMOS DE LA SEMANA",
+                items: [
+                    { name: "2 lomitos simples", price: 10000 },
+                    { name: "2 lomitos especiales", price: 12000 },
+                    { name: "2 milas comunes", price: 9000 },
+                    { name: "2 milas especiales", price: 11000 }
+                ]
+            }
+        ];
+
+        // Función para formatear el precio
+        function formatPrice(price) {
+            // Se usa el separador de miles '.' y la coma ',' como separador decimal.
+            return `$${price.toLocaleString('es-AR')}`; 
+        }
+
+        // Renderiza el menú estático
+        function renderMenu() {
+            const container = document.getElementById('menu-container');
+            let html = '';
+
+            menuData.forEach(category => {
+                html += `
+                    <div class="mb-10">
+                        <h2 class="text-3xl font-extrabold text-gray-900 border-b-4 border-red-500 pb-2 mb-4">
+                            ${category.category}
+                        </h2>
+                        <div class="space-y-2">
+                `;
+                category.items.forEach(item => {
+                    const priceText = formatPrice(item.price);
+                    html += `
+                        <div class="item-row bg-white p-4 rounded-xl shadow-md flex justify-between items-center border border-gray-100">
+                            <div class="flex-grow pr-4">
+                                <p class="text-lg font-semibold text-gray-800">${item.name}</p>
+                            </div>
+                            <p class="text-xl font-bold text-red-700">${priceText}</p>
+                        </div>
+                    `;
+                });
+                html += `
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        // Inicialización
+        window.onload = function () {
+            renderMenu();
+        }
+
+    </script>
+</body>
+</html>� Principal
+            </h2>
+            
+            <!-- Contenedor del Menú con Sombra y Borde Redondeado -->
+            <div class="bg-white p-6 sm:p-10 rounded-2xl shadow-2xl border-4 border-orange-100 space-y-4">
+                
+                <!-- Categoría: LOMITOS -->
+                <div>
+                    <!-- Título con línea fuerte -->
+                    <h3 class="title-line text-3xl font-extrabold text-primary-orange mb-4 pb-1">LOMITOS</h3>
+                    <p class="text-gray-500 mb-4 text-sm font-medium">Lomo de calidad acompañado de sus ingredientes frescos.</p>
+                    
+                    <ul class="divide-y divide-gray-200">
+                        <!-- Lomito simple -->
+                        <li class="menu-item-row">
+                            <div class="menu-item-content">
+                                <span class="text-lg font-semibold text-gray-900">Lomito simple</span>
+                                <span class="text-xl font-bold text-accent-orange">$6.000</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-1">El clásico infaltable: bife de lomo, tomate, lechuga y mayonesa casera.</p>
+                        </li>
+                        <!-- Lomito completo -->
+                        <li class="menu-item-row">
+                            <div class="menu-item-content">
+                                <span class="text-lg font-semibold text-gray-900">Lomito completo</span>
+                                <span class="text-xl font-bold text-accent-orange">$6.500</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-1">La versión más pedida: con jamón, queso, huevo frito y todos los vegetales frescos.</p>
+                        </li>
+                        <!-- Lomito cheddar -->
+                        <li class="menu-item-row">
+                            <div class="menu-item-content">
+                                <span class="text-lg font-semibold text-gray-900">Lomito cheddar</span>
+                                <span class="text-xl font-bold text-accent-orange">$7.000</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-1">Bife de lomo cubierto con abundante salsa cheddar fundido.</p>
+                        </li>
+                        <!-- Lomito caramelizado -->
+                        <li class="menu-item-row">
+                            <div class="menu-item-content">
+                                <span class="text-lg font-semibold text-gray-900">Lomito caramelizado</span>
+                                <span class="text-xl font-bold text-accent-orange">$7.000</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-1">Bife de lomo tierno, queso fundido y cebolla caramelizada lentamente en un toque de dulce.</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Separador -->
+                <div class="border-t border-orange-200 pt-4"></div>
+
+                <!-- Categoría: MILANESAS -->
+                <div>
+                    <!-- Título con línea fuerte -->
+                    <h3 class="title-line text-3xl font-extrabold text-primary-orange mb-4 pb-1">MILANESAS</h3>
+                    <p class="text-gray-500 mb-4 text-sm font-medium">Milanesas **caseras**, rebozadas con un pan rallado especial para extra-crujiente.</p>
+                    
+                    <ul class="divide-y divide-gray-200">
+                        <!-- Mila simple -->
+                        <li class="menu-item-row">
+                            <div class="menu-item-content">
+                                <span class="text-lg font-semibold text-gray-900">Mila simple</span>
+                                <span class="text-xl font-bold text-accent-orange">$5.300</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-1">Milanesa de carne (ternera), **rebozada a mano** con lechuga y tomate.</p>
+                        </li>
+                        <!-- Mila completa -->
+                        <li class="menu-item-row">
+                            <div class="menu-item-content">
+                                <span class="text-lg font-semibold text-gray-900">Mila completa</span>
+                                <span class="text-xl font-bold text-accent-orange">$6.000</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-1">Nuestra mila **extra crujiente** con jamón, queso, huevo frito y todos los vegetales frescos.</p>
+                        </li>
+                        <!-- Mila cheddar -->
+                        <li class="menu-item-row">
+                            <div class="menu-item-content">
+                                <span class="text-lg font-semibold text-gray-900">Mila cheddar</span>
+                                <span class="text-xl font-bold text-accent-orange">$6.500</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-1">Milanesa **rebozada a mano** cubierta en abundante salsa cheddar caliente.</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Separador -->
+                <div class="border-t border-orange-200 pt-4"></div>
+
+                <!-- Categoría: HAMBURGUESAS -->
+                <div>
+                    <!-- Título con línea fuerte -->
+                    <h3 class="title-line text-3xl font-extrabold text-primary-orange mb-4 pb-1">HAMBURGUESAS</h3>
+                    <p class="text-gray-500 mb-4 text-sm font-medium">Medallones caseros y frescos para un sabor inigualable.</p>
+
+                    <ul class="divide-y divide-gray-200">
+                        <!-- Hamburguesa común -->
+                        <li class="menu-item-row">
+                            <div class="menu-item-content">
+                                <span class="text-lg font-semibold text-gray-900">Hamburguesa común</span>
+                                <span class="text-xl font-bold text-accent-orange">$4.000</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-1">Medallón de carne, lechuga, tomate y aderezos.</p>
+                        </li>
+                        <!-- Hamburguesa completa -->
+                        <li class="menu-item-row">
+                            <div class="menu-item-content">
+                                <span class="text-lg font-semibold text-gray-900">Hamburguesa completa</span>
+                                <span class="text-xl font-bold text-accent-orange">$4.500</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-1">Carne, queso, jamón, huevo frito y vegetales frescos. Un clásico contundente.</p>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- 4. Sección de Promociones (REDISÑADA CON TARJETAS LLAMATIVAS) -->
+    <section id="promos" class="py-16 sm:py-24 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="title-line text-4xl sm:text-5xl font-bold text-gray-900 mb-12 mx-auto text-center">
+                Promociones
+            </h2>
+            
+            <!-- Contenedor de Promos en Grid (2 columnas en desktop, 1 en móvil) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                
+                <!-- Promo Card 1: 2 Lomitos Simples -->
+                <div class="bg-white p-6 rounded-2xl shadow-2xl border-b-8 border-primary-orange transform hover:scale-[1.02] transition duration-300">
+                    <p class="text-xs font-bold text-white bg-highlight-yellow text-gray-900 inline-block px-3 py-1 rounded-full mb-3 shadow-md">⭐ EL MÁS VENDIDO</p>
+                    <h3 class="text-2xl font-extrabold text-gray-900 mb-1">2 Lomitos Simples</h3>
+                    <p class="text-gray-600 mb-4">El doble del sabor que amas. Disfruta de la calidad del lomo con nuestra mayonesa casera. ¡Simplemente insuperable!</p>
+                    <div class="flex justify-between items-end">
+                        <span class="text-sm line-through text-gray-500">$12.000</span> <!-- (6000*2) -->
+                        <span class="text-5xl font-black text-primary-orange">$10.000</span>
+                    </div>
+                </div>
+
+                <!-- Promo Card 2: 2 Lomitos Completos -->
+                <div class="bg-white p-6 rounded-2xl shadow-2xl border-b-8 border-accent-orange transform hover:scale-[1.02] transition duration-300">
+                    <p class="text-xs font-bold text-white bg-primary-orange inline-block px-3 py-1 rounded-full mb-3 shadow-md">OFERTA FAMILIAR</p>
+                    <h3 class="text-2xl font-extrabold text-gray-900 mb-1">2 Lomitos Completos</h3>
+                    <p class="text-gray-600 mb-4">El sándwich ideal para compartir: lomo, jamón, queso, huevo y vegetales. ¡El combo más potente y rendidor!</p>
+                    <div class="flex justify-between items-end">
+                        <span class="text-sm line-through text-gray-500">$13.000</span> <!-- (6500*2) -->
+                        <span class="text-5xl font-black text-primary-orange">$12.000</span>
+                    </div>
+                </div>
+                
+                <!-- Promo Card 3: 2 Milas Comunes -->
+                <div class="bg-white p-6 rounded-2xl shadow-2xl border-b-8 border-primary-orange transform hover:scale-[1.02] transition duration-300">
+                    <p class="text-xs font-bold text-white bg-highlight-yellow text-gray-900 inline-block px-3 py-1 rounded-full mb-3 shadow-md">CRUJIENTE DÚO</p>
+                    <h3 class="text-2xl font-extrabold text-gray-900 mb-1">2 Milas Comunes</h3>
+                    <p class="text-gray-600 mb-4">¡Doble porción de sabor! Milanesas **rebozadas a mano**, extra crujientes gracias a nuestro pan rallado especial.</p>
+                    <div class="flex justify-between items-end">
+                        <span class="text-sm line-through text-gray-500">$10.600</span> <!-- (5300*2) -->
+                        <span class="text-5xl font-black text-primary-orange">$9.000</span>
+                    </div>
+                </div>
+
+                <!-- Promo Card 4: 2 Milas Completas -->
+                <div class="bg-white p-6 rounded-2xl shadow-2xl border-b-8 border-accent-orange transform hover:scale-[1.02] transition duration-300">
+                    <p class="text-xs font-bold text-white bg-primary-orange inline-block px-3 py-1 rounded-full mb-3 shadow-md">MÁXIMO AHORRO</p>
+                    <h3 class="text-2xl font-extrabold text-gray-900 mb-1">2 Milas Completas</h3>
+                    <p class="text-gray-600 mb-4">El placer de la milanesa **crujiente y casera** combinada con jamón, queso y huevo. ¡Una oferta contundente que no defrauda!</p>
+                    <div class="flex justify-between items-end">
+                        <span class="text-sm line-through text-gray-500">$12.000</span> <!-- (6000*2) -->
+                        <span class="text-5xl font-black text-primary-orange">$11.000</span>
+                    </div>
+                </div>
+
+                <!-- Promo Card 5: 2 Lomitos Cheddar/Caramelizado -->
+                <div class="bg-white p-6 rounded-2xl shadow-2xl border-b-8 border-primary-orange transform hover:scale-[1.02] transition duration-300 md:col-span-2 lg:col-span-1 mx-auto w-full md:w-1/2 lg:w-full">
+                    <p class="text-xs font-bold text-white bg-red-600 inline-block px-3 py-1 rounded-full mb-3 shadow-md">🔥 PROMO PREMIUM</p>
+                    <h3 class="text-2xl font-extrabold text-gray-900 mb-1">2 Lomitos TOP</h3>
+                    <p class="text-gray-600 mb-4">¡La explosión de sabor! Elegí combinar entre el intenso Cheddar fundido o la suavidad de la Cebolla Caramelizada.</p>
+                    <div class="flex justify-between items-end">
+                        <span class="text-sm line-through text-gray-500">$14.000</span> <!-- (7000*2) -->
+                        <span class="text-5xl font-black text-primary-orange">$13.000</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    
+    <!-- Énfasis en las Fritas antes del Pedido -->
+    <section class="bg-highlight-yellow py-8 text-gray-900 text-center shadow-inner">
+        <div class="max-w-4xl mx-auto px-4">
+            <p class="text-3xl sm:text-4xl font-extrabold tracking-tight uppercase">
+                Todo sale con fritas 🍟
+            </p>
+        </div>
+    </section>
+
+    <!-- 5. Sección de Contacto -->
+    <section id="contacto" class="py-16 bg-gray-100">
+        <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="title-line text-4xl font-bold text-gray-900 mb-6 mx-auto">
+                ¡Hacé tu Pedido!
+            </h2>
+            <p class="text-xl text-gray-600 mb-8">
+                Elige tu método de contacto preferido.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center">
+                <!-- Botón de WhatsApp -->
+                <a href="https://wa.me/5493855393742?text=¡Hola!%20Quiero%20hacer%20un%20pedido%20de%20La%20Alhambra." target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-green-500 hover:bg-green-600 text-white text-lg font-bold py-3 px-8 rounded-xl transition duration-300 shadow-md transform hover:scale-105">
+                    <!-- Icono de Chat (WhatsApp) -->
+                    <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.75-4.25 8.75-9 8.75S3 16.75 3 12 7.25 3.25 12 3.25 21 7.25 21 12z"></path></svg>
+                    Enviar WhatsApp
+                </a>
+
+                <!-- Botón de Llamada -->
+                <a href="tel:3855393742" class="inline-flex items-center justify-center bg-primary-orange hover:bg-accent-orange text-white text-lg font-bold py-3 px-8 rounded-xl transition duration-300 shadow-md transform hover:scale-105">
+                    <!-- Icono de Teléfono -->
+                    <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    Llamar al Local
+                </a>
+            </div>
+
+            <!-- Enlace a Google Maps -->
+            <a href="https://maps.app.goo.gl/Mx5jW3gKrm2YEN5y5" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-primary-orange pt-6 block font-medium underline transition duration-200">
+                Ver Ubicación en Google Maps
+            </a>
+            <!-- El número de teléfono duplicado ha sido eliminado de aquí -->
+
+        </div>
+    </section>
+
+    <!-- 6. Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
+            &copy; 2025 Sandwichería La Alhambra
+        </div>
+    </footer>
+
+</body>
+</html>
