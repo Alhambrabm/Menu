@@ -3,147 +3,189 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menú Estático y Fijo</title>
+    <title>Menú - La Alhambra</title>
     <!-- Carga de Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Configuración de la fuente Inter -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f7f7f7;
+            /* Aumento el padding-top a 115px para más seguridad */
+            padding-top: 115px; 
+            padding-bottom: 80px; /* Espacio para el footer fijo */
         }
-        .item-row {
-            transition: background-color 0.1s;
+        /* Estilo para los títulos de categoría */
+        .category-title {
+            position: sticky;
+            /* Ajuste el top a 115px para que se pegue justo debajo de las dos barras fijas con un pequeño espacio */
+            top: 115px; 
+            z-index: 10;
+            background-color: #f7f7f7;
+            padding-top: 16px;
+            padding-bottom: 8px;
+            margin-top: -8px; 
         }
-        .item-row:hover {
-            background-color: #fef2f2; /* Un rojo muy suave al pasar el mouse */
+        /* Color principal de la marca (similar al rojo ladrillo de la Alhambra/comida rápida) */
+        .brand-color {
+            background-color: #ef4444; /* Rojo 500 */
         }
-        /* Ajuste de padding al cuerpo para que el contenido no quede oculto por los elementos fijos */
-        body {
-            padding-top: 104px; /* Altura combinada del header (64px) + banner de fritas (40px) */
-            padding-bottom: 56px; /* Altura del footer de Buen Provecho (56px) */
-        }
-        /* Eliminar scrollbar de body para que el scroll solo esté en el contenedor principal si es necesario */
-        html {
-            overflow-y: scroll;
+        .brand-text {
+            color: #ef4444;
         }
     </style>
 </head>
 <body>
 
-    <!-- Encabezado Fijo (Menú del Local) -->
-    <header class="bg-red-600 p-4 shadow-xl fixed top-0 left-0 w-full z-20">
-        <div class="max-w-xl mx-auto">
-            <h1 class="text-3xl font-extrabold text-white text-center">Menú del Local</h1>
+    <!-- === ENCABEZADO Y AVISO DE FRITAS (SIEMPRE VISIBLES) === -->
+    <header class="fixed top-0 left-0 w-full z-20 shadow-lg">
+        <!-- 1. Nombre y Saludo -->
+        <div class="brand-color p-3 text-white text-center rounded-b-lg">
+            <h1 class="text-3xl font-extrabold">La Alhambra</h1>
+            <p class="text-lg mt-1 font-medium">¡Bienvenido! Revisa nuestro menú.</p>
+        </div>
+        <!-- 2. Banner de Fritas -->
+        <div class="bg-yellow-400 p-2 text-center text-gray-900 font-extrabold shadow-md">
+            <p class="text-lg">¡TODO SALE CON PAPAS FRITAS! 🍟</p>
         </div>
     </header>
 
-    <!-- Banner de Fritas Siempre Visible (Fijo) -->
-    <div class="bg-yellow-400 p-2 shadow-md fixed top-16 left-0 w-full z-20">
-        <p class="text-lg font-bold text-center text-gray-800">
-            ⭐ ¡TODO SALE CON PAPAS FRITAS! 🍟
-        </p>
-    </div>
-
-    <!-- Contenedor Principal de Contenido (Asegura el centrado y el margen) -->
-    <div class="max-w-xl mx-auto bg-white shadow-xl">
+    <!-- === CONTENEDOR PRINCIPAL DEL MENÚ (SCROLLABLE) === -->
+    <main class="max-w-xl mx-auto p-4 sm:p-6">
         
-        <!-- Contenido del Menú -->
-        <div id="menu-container" class="p-4 sm:p-6">
-            <!-- El menú estático se renderizará aquí -->
-        </div>
-    </div>
+        <!-- Definición de los datos del menú -->
+        <script>
+            const menuData = [
+                {
+                    name: "LOMITOS",
+                    color: "text-red-600",
+                    items: [
+                        { name: "Lomito simple", desc: "Clásico y delicioso.", price: 6000 },
+                        { name: "Lomito completo", desc: "Con huevo, jamón, queso y aderezos.", price: 6500 },
+                        { name: "Lomito cheddar", desc: "Bañado en abundante salsa cheddar.", price: 7000 },
+                        { name: "Lomito caramelizado", desc: "Cebolla caramelizada y queso fundido.", price: 7000 },
+                    ]
+                },
+                {
+                    name: "MILANESAS",
+                    color: "text-red-600",
+                    items: [
+                        { name: "Mila simple", desc: "La milanesa tradicional.", price: 5300 },
+                        { name: "Mila completa", desc: "Con huevo, jamón y queso.", price: 6000 },
+                        { name: "Mila cheddar", desc: "Cobertura de queso cheddar cremoso.", price: 6500 },
+                    ]
+                },
+                {
+                    name: "HAMBURGUESAS",
+                    color: "text-red-600",
+                    items: [
+                        { name: "Hamburguesa común", desc: "Carne, tomate y lechuga.", price: 4000 },
+                        { name: "Hamburguesa completa", desc: "Con huevo, jamón y queso.", price: 4500 },
+                    ]
+                },
+                {
+                    name: "PROMOS DE LA SEMANA",
+                    color: "text-green-600",
+                    items: [
+                        { name: "2 lomitos simples", desc: "¡Ahorra con este combo!", price: 10000 },
+                        { name: "2 lomitos especiales", desc: "Dos completos a mejor precio.", price: 12000 },
+                        { name: "2 milas comunes", desc: "Dos milanesas simples.", price: 9000 },
+                        { name: "2 milas especiales", desc: "Dos milanesas completas.", price: 11000 },
+                    ]
+                },
+                {
+                    name: "BEBIDAS",
+                    color: "text-red-600",
+                    items: [
+                        // Gaseosas y Agua
+                        { name: "Gaseosas y Agua", desc: "El acompañamiento perfecto para tu sánguche.", isSubSection: true },
+                        { name: "Gaseosas (375cc)", desc: "Fanta, Sprite, Coca-Cola. (Agua $1.500)", price: 2000 },
+                        { name: "Gaseosas (1Lt)", desc: "Coca Común, Coca Zero, Fanta, Sprite.", price: 3500 },
+                        
+                        // Cervezas (Rubias y Clásicas)
+                        { name: "Cervezas (Rubias y Clásicas)", desc: "", isSubSection: true },
+                        { name: "Pampa Dorada", desc: "", price: 1300 },
+                        { name: "Stella Artois (473cc)", desc: "", price: 4300 },
+                        { name: "Stella Artois (710cc)", desc: "", price: 5500 },
+                        { name: "Budweiser (710cc)", desc: "", price: 6000 },
+                        { name: "Corona (710cc)", desc: "", price: 6000 },
 
-    <!-- Pie de Página Fijo (Buen Provecho) -->
-    <footer class="bg-red-600 p-4 shadow-inner fixed bottom-0 left-0 w-full z-20">
-        <p class="text-lg font-semibold text-white text-center">
-            ¡Gracias por su visita! ¡Buen Provecho! 🥳
-        </p>
+                        // Cervezas Negras
+                        { name: "Cervezas Negras", desc: "", isSubSection: true },
+                        { name: "Salta Negra (473cc)", desc: "", price: 4500 },
+                        { name: "Guinness", desc: "", price: 4500 },
+
+                        // Vinos y Otros
+                        { name: "Vinos y Otros", desc: "", isSubSection: true },
+                        { name: "Don Valentín (750cc)", desc: "Malbec, Cabernet o Blanco. Botella de 750cc.", price: 7500 },
+                        { name: "Fernet (Vaso)", desc: "Con Coca Cola. ¡Listo para disfrutar!", price: 3000 },
+                    ]
+                }
+            ];
+
+            function formatPrice(price) {
+                return `$${price.toLocaleString('es-AR')}`;
+            }
+
+            function renderMenu() {
+                const menuContainer = document.getElementById('menu-list-container');
+                let html = '';
+
+                menuData.forEach(category => {
+                    // Título de la Categoría
+                    html += `
+                        <div class="category-title border-b-2 border-gray-300">
+                            <h2 class="text-3xl font-extrabold ${category.color}">${category.name}</h2>
+                        </div>
+                        <div class="space-y-3 pt-2 pb-6">
+                    `;
+
+                    category.items.forEach(item => {
+                        if (item.isSubSection) {
+                            // Renderizar Subsección
+                            html += `
+                                <div class="mt-4 pt-4 border-t border-gray-200">
+                                    <h3 class="text-xl font-bold brand-text">${item.name}</h3>
+                                    ${item.desc ? `<p class="text-sm text-gray-500">${item.desc}</p>` : ''}
+                                </div>
+                            `;
+                        } else {
+                            // Renderizar Item de Menú
+                            const itemPrice = item.price ? formatPrice(item.price) : '';
+                            html += `
+                                <div class="flex justify-between items-center bg-white p-3 rounded-xl shadow-md transition duration-200 hover:shadow-lg hover:ring-2 hover:ring-red-400">
+                                    <div class="flex-1 min-w-0">
+                                        <h3 class="text-lg font-semibold text-gray-900 truncate">${item.name}</h3>
+                                        ${item.desc ? `<p class="text-sm text-gray-500 mt-0.5">${item.desc}</p>` : ''}
+                                    </div>
+                                    <div class="text-right ml-4 flex-shrink-0">
+                                        <p class="text-xl font-extrabold brand-text">${itemPrice}</p>
+                                    </div>
+                                </div>
+                            `;
+                        }
+                    });
+
+                    html += `</div>`;
+                });
+
+                menuContainer.innerHTML = html;
+            }
+
+            window.onload = renderMenu;
+        </script>
+
+        <div id="menu-list-container">
+            <!-- El menú se renderizará aquí -->
+            <div class="text-center p-8 text-gray-500 italic">Cargando menú...</div>
+        </div>
+    </main>
+
+    <!-- === FOOTER DE BUEN PROVECHO (SIEMPRE VISIBLE) === -->
+    <footer class="fixed bottom-0 left-0 w-full z-20 brand-color p-4 text-white text-center shadow-2xl rounded-t-lg">
+        <p class="text-2xl font-extrabold">¡GRACIAS Y BUEN PROVECHO!</p>
     </footer>
 
-    <script>
-        // Definición de los datos del menú
-        const menuData = [
-            {
-                category: "LOMITOS",
-                items: [
-                    { name: "Lomito simple", price: 6000 },
-                    { name: "Lomito completo", price: 6500 },
-                    { name: "Lomito cheddar", price: 7000 },
-                    { name: "Lomito caramelizado", price: 7000 }
-                ]
-            },
-            {
-                category: "MILANESAS",
-                items: [
-                    { name: "Mila simple", price: 5300 },
-                    { name: "Mila completa", price: 6000 },
-                    { name: "Mila cheddar", price: 6500 }
-                ]
-            },
-            {
-                category: "HAMBURGUESAS",
-                items: [
-                    { name: "Hamburguesa común", price: 4000 },
-                    { name: "Hamburguesa completa", price: 4500 }
-                ]
-            },
-            {
-                category: "PROMOS DE LA SEMANA",
-                items: [
-                    { name: "2 lomitos simples", price: 10000 },
-                    { name: "2 lomitos especiales", price: 12000 },
-                    { name: "2 milas comunes", price: 9000 },
-                    { name: "2 milas especiales", price: 11000 }
-                ]
-            }
-        ];
-
-        // Función para formatear el precio
-        function formatPrice(price) {
-            // Se usa el separador de miles '.' y la coma ',' como separador decimal.
-            return `$${price.toLocaleString('es-AR')}`; 
-        }
-
-        // Renderiza el menú estático
-        function renderMenu() {
-            const container = document.getElementById('menu-container');
-            let html = '';
-
-            menuData.forEach(category => {
-                html += `
-                    <div class="mb-10">
-                        <h2 class="text-3xl font-extrabold text-gray-900 border-b-4 border-red-500 pb-2 mb-4">
-                            ${category.category}
-                        </h2>
-                        <div class="space-y-2">
-                `;
-                category.items.forEach(item => {
-                    const priceText = formatPrice(item.price);
-                    html += `
-                        <div class="item-row bg-white p-4 rounded-xl shadow-md flex justify-between items-center border border-gray-100">
-                            <div class="flex-grow pr-4">
-                                <p class="text-lg font-semibold text-gray-800">${item.name}</p>
-                            </div>
-                            <p class="text-xl font-bold text-red-700">${priceText}</p>
-                        </div>
-                    `;
-                });
-                html += `
-                        </div>
-                    </div>
-                `;
-            });
-
-            container.innerHTML = html;
-        }
-
-        // Inicialización
-        window.onload = function () {
-            renderMenu();
-        }
-
-    </script>
 </body>
 </html>
+
