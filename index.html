@@ -11,14 +11,15 @@
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f7f7f7;
-            /* Aumento el padding-top a 115px para más seguridad */
+            /* Espacio superior para el header fijo (115px) */
             padding-top: 115px; 
-            padding-bottom: 80px; /* Espacio para el footer fijo */
+            /* Espacio inferior para el footer fijo (80px) */
+            padding-bottom: 80px; 
         }
         /* Estilo para los títulos de categoría */
         .category-title {
             position: sticky;
-            /* Ajuste el top a 115px para que se pegue justo debajo de las dos barras fijas con un pequeño espacio */
+            /* Se pega justo debajo de las dos barras fijas (La Alhambra + Papas Fritas) */
             top: 115px; 
             z-index: 10;
             background-color: #f7f7f7;
@@ -26,13 +27,43 @@
             padding-bottom: 8px;
             margin-top: -8px; 
         }
-        /* Color principal de la marca (similar al rojo ladrillo de la Alhambra/comida rápida) */
+        /* Color principal de la marca (rojo) */
         .brand-color {
-            background-color: #ef4444; /* Rojo 500 */
+            background-color: #ef4444; 
         }
         .brand-text {
             color: #ef4444;
         }
+        /* Estilos para las tarjetas de Promociones */
+        .promo-card {
+            background-color: white;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .promo-badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            color: white;
+        }
+        .promo-price {
+            font-size: 2.25rem; /* text-4xl */
+            font-weight: 900; /* font-extrabold */
+            color: #ef4444; /* brand-text */
+        }
+        .old-price {
+            font-size: 0.875rem; /* text-sm */
+            text-decoration: line-through;
+            color: #9ca3af; /* text-gray-400 */
+        }
+        .bg-red-promo { background-color: #ef4444; }
+        .bg-orange-promo { background-color: #f97316; }
+        .bg-yellow-promo { background-color: #facc15; }
+        .bg-green-promo { background-color: #10b981; }
+
     </style>
 </head>
 <body>
@@ -53,30 +84,33 @@
     <!-- === CONTENEDOR PRINCIPAL DEL MENÚ (SCROLLABLE) === -->
     <main class="max-w-xl mx-auto p-4 sm:p-6">
         
-        <!-- Definición de los datos del menú -->
+        <!-- Definición de los datos del menú (Incluye LOMITOS/MILANESAS/HAMBURGUESAS/PAPAS/BEBIDAS) -->
         <script>
             const menuData = [
                 {
                     name: "LOMITOS",
                     color: "text-red-600",
+                    description: "Lomo de calidad acompañado de sus ingredientes frescos.",
                     items: [
-                        { name: "Lomito simple", desc: "Clásico y delicioso.", price: 6000 },
-                        { name: "Lomito completo", desc: "Con huevo, jamón, queso y aderezos.", price: 6500 },
-                        { name: "Lomito cheddar", desc: "Bañado en abundante salsa cheddar.", price: 7000 },
-                        { name: "Lomito caramelizado", desc: "Cebolla caramelizada y queso fundido.", price: 7000 },
+                        { name: "Lomito simple", desc: "El clásico infaltable: bife de lomo, tomate, lechuga y mayonesa casera.", price: 6000 },
+                        { name: "Lomito completo", desc: "La versión más pedida: con jamón, queso, huevo frito y todos los vegetales frescos.", price: 6500 },
+                        { name: "Lomito cheddar", desc: "Bife de lomo cubierto con abundante salsa cheddar fundido.", price: 7000 },
+                        { name: "Lomito caramelizado", desc: "Bife de lomo tierno, queso fundido y cebolla caramelizada lentamente en un toque de dulce.", price: 7000 },
+                        { name: "Lomito Gratinado", desc: "Lomo, jamón, tomate y abundante queso mozzarella gratinado.", price: 7500 },
+                        { name: "Lomito al Verdeo", desc: "Bife de lomo tierno cubierto con una cremosa salsa de cebolla de verdeo fresca.", price: 7300 },
                     ]
                 },
                 {
                     name: "MILANESAS",
                     color: "text-red-600",
+                    description: "Milanesas **caseras**, rebozadas con un pan rallado especial para extra-crujiente.",
                     items: [
-                        { name: "Mila simple", desc: "La milanesa tradicional.", price: 5300 },
-                        { name: "Mila completa", desc: "Con huevo, jamón y queso.", price: 6000 },
-                        { name: "Mila cheddar", desc: "Cobertura de queso cheddar cremoso.", price: 6500 },
+                        { name: "Mila simple", desc: "Milanesa de carne (ternera), **rebozada a mano** con lechuga y tomate.", price: 5500 },
+                        { name: "Mila completa", desc: "Nuestra mila **extra crujiente** con jamón, queso, huevo frito y todos los vegetales frescos.", price: 6000 },
+                        { name: "Mila cheddar", desc: "Milanesa **rebozada a mano** cubierta en abundante salsa cheddar caliente.", price: 6500 },
                         
-                        // Papas Adicionales
+                        // Porciones Adicionales
                         { name: "Porciones Adicionales", desc: "", isSubSection: true },
-                        // Eliminado "grandes" de las descripciones
                         { name: "Papas con Cheddar", desc: "Porción de papas con queso cheddar.", price: 3500 },
                         { name: "Papas al Verdeo", desc: "Porción de papas con crema y verdeo.", price: 3500 },
                     ]
@@ -84,43 +118,43 @@
                 {
                     name: "HAMBURGUESAS",
                     color: "text-red-600",
+                    description: "Medallones caseros y frescos para un sabor inigualable.",
                     items: [
-                        { name: "Hamburguesa común", desc: "Carne, tomate y lechuga.", price: 4000 },
-                        { name: "Hamburguesa completa", desc: "Con huevo, jamón y queso.", price: 4500 },
+                        { name: "Hamburguesa común", desc: "Medallón de carne, lechuga, tomate y aderezos.", price: 4000 },
+                        { name: "Hamburguesa completa", desc: "Carne, queso, jamón, huevo frito y vegetales frescos. Un clásico contundente.", price: 4500 },
+                        { name: "Hamburguesa doble carne", desc: "Dos carnes, queso, jamón, huevo.", price: 6000 },
                     ]
                 },
                 {
-                    name: "PROMOS DE LA SEMANA",
-                    color: "text-green-600",
+                    name: "PAPAS ESPECIALES",
+                    color: "text-red-600",
+                    description: "Ideales para compartir, con toppings irresistibles. ",
                     items: [
-                        { name: "2 lomitos simples", desc: "¡Ahorra con este combo!", price: 10000 },
-                        { name: "2 lomitos especiales", desc: "Dos completos a mejor precio.", price: 12000 },
-                        { name: "2 milas comunes", desc: "Dos milanesas simples.", price: 9000 },
-                        { name: "2 milas especiales", desc: "Dos milanesas completas.", price: 11000 },
+                        { name: "Papas con Cheddar", desc: "Porción de papas fritas bañadas en cremoso queso cheddar fundido.", price: 3500 },
+                        { name: "Papas al Verdeo", desc: "Papas fritas con un toque fresco y aromático de cebolla de verdeo picada.", price: 3500 },
                     ]
                 },
                 {
                     name: "BEBIDAS",
                     color: "text-red-600",
+                    description: "El acompañamiento perfecto para tu sánguche.",
                     items: [
                         // Gaseosas y Agua
-                        { name: "Gaseosas y Agua", desc: "El acompañamiento perfecto para tu sánguche.", isSubSection: true },
+                        { name: "Gaseosas y Agua", desc: "", isSubSection: true },
                         { name: "Gaseosas (375cc)", desc: "Fanta, Sprite, Coca-Cola. (Agua $1.500)", price: 2000 },
                         { name: "Gaseosas (1Lt)", desc: "Coca Común, Coca Zero, Fanta, Sprite.", price: 3500 },
                         
                         // Cervezas (Rubias y Clásicas)
                         { name: "Cervezas (Rubias y Clásicas)", desc: "", isSubSection: true },
-                        // Pampa y Salta Rubia actualizadas
-                        { name: "Pampa Dorada", desc: "", price: 4300 }, 
-                        { name: "Salta Rubia (473cc)", desc: "", price: 4300 },
-                        // Budweiser y Corona actualizadas
-                        { name: "Budweiser (710cc)", desc: "", price: 5500 },
-                        { name: "Corona (710cc)", desc: "", price: 6500 },
+                        { name: "Pampa Dorada", desc: "Rubia clásica y refrescante.", price: 4300 }, 
+                        { name: "Salta Rubia (473cc)", desc: "Rubia de cuerpo y sabor equilibrado.", price: 4300 },
+                        { name: "Budweiser (710cc)", desc: "Rubia clásica en botella de 710 cc.", price: 5500 }, 
+                        { name: "Corona (710cc)", desc: "Cerveza importada en botella de 710 cc.", price: 6500 },   
 
                         // Cervezas Negras
                         { name: "Cervezas Negras", desc: "", isSubSection: true },
-                        { name: "Salta Negra (473cc)", desc: "", price: 4500 },
-                        { name: "Guinness", desc: "", price: 4500 },
+                        { name: "Salta Negra (473cc)", desc: "De malta tostada en lata de 473 cc.", price: 4500 },
+                        { name: "Guinness", desc: "Stout cremosa y robusta.", price: 4500 },
 
                         // Vinos y Otros
                         { name: "Vinos y Otros", desc: "", isSubSection: true },
@@ -130,7 +164,51 @@
                 }
             ];
 
+            const promosData = [
+                {
+                    badge: "EL MÁS VENDIDO",
+                    badgeClass: "bg-orange-promo",
+                    name: "2 Lomitos Simples",
+                    oldPrice: 12000,
+                    newPrice: 11000,
+                    desc: "El doble del sabor que amas. Disfruta de la calidad del lomo con **extra mayonesa casera**. ¡Simplemente insuperable!",
+                },
+                {
+                    badge: "OFERTA FAMILIAR",
+                    badgeClass: "bg-red-promo",
+                    name: "2 Lomitos Completos",
+                    oldPrice: 13000,
+                    newPrice: 12000,
+                    desc: "El sándwich ideal para compartir: lomo, jamón, queso, huevo y vegetales. ¡El combo más potente y rendidor!",
+                },
+                {
+                    badge: "CRUJIENTE DÚO",
+                    badgeClass: "bg-yellow-promo",
+                    name: "2 Milas Simples",
+                    oldPrice: 11000,
+                    newPrice: 10000,
+                    desc: "¡Doble porción de sabor! Milanesas rebozadas a mano **extra crujientes** gracias a nuestro pan rallado especial.",
+                },
+                {
+                    badge: "MÁXIMO AHORRO",
+                    badgeClass: "bg-green-promo",
+                    name: "2 Milas Completas",
+                    oldPrice: 12000,
+                    newPrice: 11000,
+                    desc: "El placer de la milanesa **crujiente y casera** combinada con jamón, queso y huevo. ¡Una oferta contundente que no defrauda!",
+                },
+                {
+                    badge: "PROMO PREMIUM",
+                    badgeClass: "bg-red-promo",
+                    name: "2 Lomitos TOP",
+                    oldPrice: 14000,
+                    newPrice: 13000,
+                    desc: "¡La explosión de sabor! Elegí combinar entre el intenso **Cheddar fundido** o la suavidad de la **Cebolla Caramelizada**.",
+                }
+            ];
+
             function formatPrice(price) {
+                // Formatea el precio con separadores de miles para Argentina
                 return `$${price.toLocaleString('es-AR')}`;
             }
 
@@ -138,11 +216,13 @@
                 const menuContainer = document.getElementById('menu-list-container');
                 let html = '';
 
+                // --- 1. SECCIONES DEL MENÚ (Lomitos, Milanesas, etc.) ---
                 menuData.forEach(category => {
                     // Título de la Categoría
                     html += `
                         <div class="category-title border-b-2 border-gray-300">
                             <h2 class="text-3xl font-extrabold ${category.color}">${category.name}</h2>
+                            ${category.description ? `<p class="text-sm text-gray-500 mt-1">${category.description}</p>` : ''}
                         </div>
                         <div class="space-y-3 pt-2 pb-6">
                     `;
@@ -159,11 +239,15 @@
                         } else {
                             // Renderizar Item de Menú
                             const itemPrice = item.price ? formatPrice(item.price) : '';
+                            
+                            // Reemplazar **texto** por <strong>texto</strong> para el formato en las descripciones
+                            const descriptionHtml = item.desc ? item.desc.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') : '';
+
                             html += `
                                 <div class="flex justify-between items-center bg-white p-3 rounded-xl shadow-md transition duration-200 hover:shadow-lg hover:ring-2 hover:ring-red-400">
                                     <div class="flex-1 min-w-0">
                                         <h3 class="text-lg font-semibold text-gray-900 truncate">${item.name}</h3>
-                                        ${item.desc ? `<p class="text-sm text-gray-500 mt-0.5">${item.desc}</p>` : ''}
+                                        ${descriptionHtml ? `<p class="text-sm text-gray-500 mt-0.5">${descriptionHtml}</p>` : ''}
                                     </div>
                                     <div class="text-right ml-4 flex-shrink-0">
                                         <p class="text-xl font-extrabold brand-text">${itemPrice}</p>
@@ -175,6 +259,33 @@
 
                     html += `</div>`;
                 });
+
+                // --- 2. SECCIÓN DE PROMOCIONES ---
+                html += `
+                    <div class="category-title border-b-2 border-gray-300 mt-6">
+                        <h2 class="text-3xl font-extrabold text-green-600">PROMOCIONES</h2>
+                    </div>
+                    <div class="space-y-6 pt-4 pb-12">
+                `;
+
+                promosData.forEach(promo => {
+                    const descHtml = promo.desc ? promo.desc.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') : '';
+
+                    html += `
+                        <div class="promo-card">
+                            <span class="promo-badge ${promo.badgeClass}">${promo.badge}</span>
+                            <h3 class="text-2xl font-bold text-gray-800 mt-2">${promo.name}</h3>
+                            <p class="text-sm text-gray-600 mt-1">${descHtml}</p>
+                            <div class="flex justify-between items-center mt-3">
+                                <span class="old-price">${formatPrice(promo.oldPrice)}</span>
+                                <span class="promo-price">${formatPrice(promo.newPrice)}</span>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                html += `</div>`;
+
 
                 menuContainer.innerHTML = html;
             }
