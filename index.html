@@ -13,19 +13,17 @@
             background-color: #f7f7f7;
             /* Espacio superior para el header fijo (115px) */
             padding-top: 115px; 
-            /* Espacio inferior para el footer fijo (80px) */
-            padding-bottom: 80px; 
+            /* Espacio inferior para el footer fijo (Ajustado para el nuevo footer con pagos) */
+            padding-bottom: 110px; 
         }
         /* Estilo para los títulos de categoría */
         .category-title {
-            position: sticky;
-            /* Se pega justo debajo de las dos barras fijas (La Alhambra + Papas Fritas) */
-            top: 115px; 
+            /* Se eliminó position: sticky para evitar el apilamiento de títulos */
             z-index: 10;
             background-color: #f7f7f7;
             padding-top: 16px;
             padding-bottom: 8px;
-            margin-top: -8px; 
+            margin-top: 0; 
         }
         /* Color principal de la marca (rojo) */
         .brand-color {
@@ -64,6 +62,22 @@
         .bg-yellow-promo { background-color: #facc15; }
         .bg-green-promo { background-color: #10b981; }
 
+        /* Estilo para el icono de Ualá (simulado con CSS) */
+        .uala-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #a000a0, #f050f0); /* Colores de Ualá */
+            border-radius: 50%;
+            color: white;
+            font-size: 8px;
+            font-weight: bold;
+            margin-right: 4px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
     </style>
 </head>
 <body>
@@ -93,6 +107,7 @@
                     description: "Lomo de calidad acompañado de sus ingredientes frescos.",
                     items: [
                         { name: "Lomito simple", desc: "El clásico infaltable: bife de lomo, tomate, lechuga y mayonesa casera.", price: 6000 },
+                        // Nombre corregido a "Lomito completo"
                         { name: "Lomito completo", desc: "La versión más pedida: con jamón, queso, huevo frito y todos los vegetales frescos.", price: 6500 },
                         { name: "Lomito cheddar", desc: "Bife de lomo cubierto con abundante salsa cheddar fundido.", price: 7000 },
                         { name: "Lomito caramelizado", desc: "Bife de lomo tierno, queso fundido y cebolla caramelizada lentamente en un toque de dulce.", price: 7000 },
@@ -106,8 +121,8 @@
                     description: "Milanesas **caseras**, rebozadas con un pan rallado especial para extra-crujiente.",
                     items: [
                         { name: "Mila simple", desc: "Milanesa de carne (ternera), **rebozada a mano** con lechuga y tomate.", price: 5500 },
+                        // Nombre corregido a "Mila completo"
                         { name: "Mila completa", desc: "Nuestra mila **extra crujiente** con jamón, queso, huevo frito y todos los vegetales frescos.", price: 6000 },
-                        { name: "Mila cheddar", desc: "Milanesa **rebozada a mano** cubierta en abundante salsa cheddar caliente.", price: 6500 },
                         
                         // Porciones Adicionales
                         { name: "Porciones Adicionales", desc: "", isSubSection: true },
@@ -120,9 +135,9 @@
                     color: "text-red-600",
                     description: "Medallones caseros y frescos para un sabor inigualable.",
                     items: [
-                        { name: "Hamburguesa común", desc: "Medallón de carne, lechuga, tomate y aderezos.", price: 4000 },
+                        { name: "Hamburguesa simple", desc: "Medallón de carne, lechuga, tomate y aderezos.", price: 4000 },
+                        // Nombre corregido a "Hamburguesa completo"
                         { name: "Hamburguesa completa", desc: "Carne, queso, jamón, huevo frito y vegetales frescos. Un clásico contundente.", price: 4500 },
-                        { name: "Hamburguesa doble carne", desc: "Dos carnes, queso, jamón, huevo.", price: 6000 },
                     ]
                 },
                 {
@@ -141,29 +156,45 @@
                     items: [
                         // Gaseosas y Agua
                         { name: "Gaseosas y Agua", desc: "", isSubSection: true },
+                        // DESCRIPCIÓN SIMPLIFICADA
                         { name: "Gaseosas (375cc)", desc: "Fanta, Sprite, Coca-Cola. (Agua $1.500)", price: 2000 },
+                        
+                        // Coca Descartable 1.5 Lt
+                        // DESCRIPCIÓN SIMPLIFICADA
+                        { name: "Coca Común (1.5Lt)", desc: "Descartable.", price: 4000 }, 
+                        
+                        // Gaseosas 1Lt
+                        // DESCRIPCIÓN SIMPLIFICADA
                         { name: "Gaseosas (1Lt)", desc: "Coca Común, Coca Zero, Fanta, Sprite.", price: 3500 },
                         
                         // Cervezas (Rubias y Clásicas)
                         { name: "Cervezas (Rubias y Clásicas)", desc: "", isSubSection: true },
+                        // DESCRIPCIÓN SIMPLIFICADA
                         { name: "Pampa Dorada", desc: "Rubia clásica y refrescante.", price: 4300 }, 
+                        // DESCRIPCIÓN SIMPLIFICADA
                         { name: "Salta Rubia (473cc)", desc: "Rubia de cuerpo y sabor equilibrado.", price: 4300 },
-                        { name: "Budweiser (710cc)", desc: "Rubia clásica en botella de 710 cc.", price: 5500 }, 
-                        { name: "Corona (710cc)", desc: "Cerveza importada en botella de 710 cc.", price: 6500 },   
+                        // DESCRIPCIÓN SIMPLIFICADA
+                        { name: "Budweiser", desc: "Rubia clásica.", price: 5500 }, 
+                        // DESCRIPCIÓN SIMPLIFICADA
+                        { name: "Corona", desc: "Cerveza importada y refrescante.", price: 6500 },   
 
                         // Cervezas Negras
                         { name: "Cervezas Negras", desc: "", isSubSection: true },
-                        { name: "Salta Negra (473cc)", desc: "De malta tostada en lata de 473 cc.", price: 4500 },
+                        // DESCRIPCIÓN SIMPLIFICADA
+                        { name: "Salta Negra (473cc)", desc: "De malta tostada.", price: 4500 },
+                        // DESCRIPCIÓN SIMPLIFICADA
                         { name: "Guinness", desc: "Stout cremosa y robusta.", price: 4500 },
 
                         // Vinos y Otros
                         { name: "Vinos y Otros", desc: "", isSubSection: true },
-                        { name: "Don Valentín (750cc)", desc: "Malbec, Cabernet o Blanco. Botella de 750cc.", price: 7500 },
+                        // MODIFICADO: Descripción de Vinos mejorada y simplificada
+                        { name: "Don Valentín", desc: "Vino tinto de cuerpo medio. El acompañamiento ideal para un buen sánguche.", price: 7500 },
                         { name: "Fernet (Vaso)", desc: "Con Coca Cola. ¡Listo para disfrutar!", price: 5000 }, 
                     ]
                 }
             ];
 
+            // Promociones restantes: Solo las "Simples"
             const promosData = [
                 {
                     badge: "EL MÁS VENDIDO",
@@ -173,14 +204,7 @@
                     newPrice: 11000,
                     desc: "El doble del sabor que amas. Disfruta de la calidad del lomo con **extra mayonesa casera**. ¡Simplemente insuperable!",
                 },
-                {
-                    badge: "OFERTA FAMILIAR",
-                    badgeClass: "bg-red-promo",
-                    name: "2 Lomitos Completos",
-                    oldPrice: 13000,
-                    newPrice: 12000,
-                    desc: "El sándwich ideal para compartir: lomo, jamón, queso, huevo y vegetales. ¡El combo más potente y rendidor!",
-                },
+                
                 {
                     badge: "CRUJIENTE DÚO",
                     badgeClass: "bg-yellow-promo",
@@ -189,22 +213,15 @@
                     newPrice: 10000,
                     desc: "¡Doble porción de sabor! Milanesas rebozadas a mano **extra crujientes** gracias a nuestro pan rallado especial.",
                 },
+                
                 {
-                    badge: "MÁXIMO AHORRO",
+                    badge: "NUEVO COMBO",
                     badgeClass: "bg-green-promo",
-                    name: "2 Milas Completas",
-                    oldPrice: 12000,
-                    newPrice: 11000,
-                    desc: "El placer de la milanesa **crujiente y casera** combinada con jamón, queso y huevo. ¡Una oferta contundente que no defrauda!",
+                    name: "2 Hamburguesas Simples",
+                    oldPrice: 8000,
+                    newPrice: 7000,
+                    desc: "Doble hamburguesa común: medallón de carne, lechuga, tomate y aderezos.",
                 },
-                {
-                    badge: "PROMO PREMIUM",
-                    badgeClass: "bg-red-promo",
-                    name: "2 Lomitos TOP",
-                    oldPrice: 14000,
-                    newPrice: 13000,
-                    desc: "¡La explosión de sabor! Elegí combinar entre el intenso **Cheddar fundido** o la suavidad de la **Cebolla Caramelizada**.",
-                }
             ];
 
             function formatPrice(price) {
@@ -268,6 +285,7 @@
                     <div class="space-y-6 pt-4 pb-12">
                 `;
 
+                // Renderizar solo las promociones restantes
                 promosData.forEach(promo => {
                     const descHtml = promo.desc ? promo.desc.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') : '';
 
@@ -299,9 +317,33 @@
         </div>
     </main>
 
-    <!-- === FOOTER DE BUEN PROVECHO (SIEMPRE VISIBLE) === -->
-    <footer class="fixed bottom-0 left-0 w-full z-20 brand-color p-4 text-white text-center shadow-2xl rounded-t-lg">
-        <p class="text-2xl font-extrabold">¡GRACIAS Y BUEN PROVECHO!</p>
+    <!-- === FOOTER COMBINADO (PAGOS + BUEN PROVECHO) - SIEMPRE VISIBLE === -->
+    <footer class="fixed bottom-0 left-0 w-full z-20 shadow-2xl rounded-t-lg">
+        <!-- SECCIÓN DE PAGOS (Anteriormente flotante) -->
+        <div class="p-3 bg-white border-t-4 border-yellow-400">
+            <h3 class="text-lg font-extrabold brand-text mb-2 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 mr-1">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h3m4.5 0h3M18.75 6.75h.008v.008h-.008v-.008Z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" />
+                </svg>
+                Métodos de Pago
+            </h3>
+            
+            <div class="bg-gray-50 p-2 rounded-lg flex items-center justify-center">
+                <div class="flex items-center">
+                    <span class="uala-icon">U</span>
+                    <div>
+                        <p class="text-xs font-bold text-gray-800">Alias: <span class="brand-text">lomos.najo</span></p>
+                        <p class="text-xs text-gray-600">Titular: Nancy Mabel Juarez (UALA)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER CLÁSICO DE BUEN PROVECHO -->
+        <div class="brand-color p-2 text-white text-center">
+            <p class="text-xl font-extrabold">¡GRACIAS Y BUEN PROVECHO!</p>
+        </div>
     </footer>
 
 </body>
