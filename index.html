@@ -106,13 +106,12 @@
                     color: "text-red-600",
                     description: "Lomo de calidad acompañado de sus ingredientes frescos.",
                     items: [
-                        { name: "Lomito simple", desc: "El clásico infaltable: bife de lomo, tomate, lechuga y mayonesa casera.", price: 6000 },
-                        // Nombre corregido a "Lomito completo"
-                        { name: "Lomito completo", desc: "La versión más pedida: con jamón, queso, huevo frito y todos los vegetales frescos.", price: 6500 },
-                        { name: "Lomito cheddar", desc: "Bife de lomo cubierto con abundante salsa cheddar fundido.", price: 7000 },
-                        { name: "Lomito caramelizado", desc: "Bife de lomo tierno, queso fundido y cebolla caramelizada lentamente en un toque de dulce.", price: 7000 },
+                        { name: "Lomito simple", desc: "El clásico infaltable: bife de lomo, tomate, lechuga y mayonesa casera.", price: 6500 },
+                        { name: "Lomito completo", desc: "La versión más pedida: con jamón, queso, huevo frito y todos los vegetales frescos.", price: 7000 },
+                        { name: "Lomito cheddar", desc: "Bife de lomo cubierto con abundante salsa cheddar fundido.", price: 7500 },
+                        { name: "Lomito caramelizado", desc: "Bife de lomo tierno, queso fundido y cebolla caramelizada lentamente en un toque de dulce.", price: 7500 },
                         { name: "Lomito Gratinado", desc: "Lomo, jamón, tomate y abundante queso mozzarella gratinado.", price: 7500 },
-                        { name: "Lomito al Verdeo", desc: "Bife de lomo tierno cubierto con una cremosa salsa de cebolla de verdeo fresca.", price: 7300 },
+                        { name: "Lomito al Verdeo", desc: "Bife de lomo tierno cubierto con una cremosa salsa de cebolla de verdeo fresca.", price: 7500 },
                     ]
                 },
                 {
@@ -120,14 +119,10 @@
                     color: "text-red-600",
                     description: "Milanesas **caseras**, rebozadas con un pan rallado especial para extra-crujiente.",
                     items: [
-                        { name: "Mila simple", desc: "Milanesa de carne (ternera), **rebozada a mano** con lechuga y tomate.", price: 5500 },
-                        // Nombre corregido a "Mila completo"
-                        { name: "Mila completa", desc: "Nuestra mila **extra crujiente** con jamón, queso, huevo frito y todos los vegetales frescos.", price: 6000 },
-                        
-                        // Porciones Adicionales
-                        { name: "Porciones Adicionales", desc: "", isSubSection: true },
-                        { name: "Papas con Cheddar", desc: "Porción de papas con queso cheddar.", price: 3500 },
-                        { name: "Papas al Verdeo", desc: "Porción de papas con crema y verdeo.", price: 3500 },
+                        { name: "Mila simple", desc: "Milanesa de carne (ternera), **rebozada a mano** con lechuga y tomate.", price: 6000 },
+                        { name: "Mila completa", desc: "Nuestra mila **extra crujiente** con jamón, queso, huevo frito y todos los vegetales frescos.", price: 6500 },
+                        { name: "Mila cheddar", desc: "Milanesa de ternera cubierta con abundante salsa cheddar.", price: 6500 },
+                        { name: "Mila al Verdeo", desc: "Milanesa de ternera cubierta con una cremosa salsa de cebolla de verdeo.", price: 6500 },
                     ]
                 },
                 {
@@ -135,9 +130,9 @@
                     color: "text-red-600",
                     description: "Medallones caseros y frescos para un sabor inigualable.",
                     items: [
-                        { name: "Hamburguesa simple", desc: "Medallón de carne, lechuga, tomate y aderezos.", price: 4000 },
-                        // Nombre corregido a "Hamburguesa completo"
-                        { name: "Hamburguesa completa", desc: "Carne, queso, jamón, huevo frito y vegetales frescos. Un clásico contundente.", price: 4500 },
+                        { name: "Hamburguesa común", desc: "Medallón de carne, lechuga, tomate y aderezos.", price: 4500 },
+                        { name: "Hamburguesa completa", desc: "Carne, queso, jamón, huevo frito y vegetales frescos. Un clásico contundente.", price: 5000 },
+                        { name: "Hamburguesa cheddar", desc: "Medallón de carne con una generosa capa de queso cheddar fundido.", price: 5000 },
                     ]
                 },
                 {
@@ -145,6 +140,7 @@
                     color: "text-red-600",
                     description: "Ideales para compartir, con toppings irresistibles. ",
                     items: [
+                        { name: "Papas Gratinadas", desc: "Papas fritas cubiertas con una deliciosa capa de queso gratinado.", price: 3500 },
                         { name: "Papas con Cheddar", desc: "Porción de papas fritas bañadas en cremoso queso cheddar fundido.", price: 3500 },
                         { name: "Papas al Verdeo", desc: "Papas fritas con un toque fresco y aromático de cebolla de verdeo picada.", price: 3500 },
                     ]
@@ -156,72 +152,27 @@
                     items: [
                         // Gaseosas y Agua
                         { name: "Gaseosas y Agua", desc: "", isSubSection: true },
-                        // DESCRIPCIÓN SIMPLIFICADA
                         { name: "Gaseosas (375cc)", desc: "Fanta, Sprite, Coca-Cola. (Agua $1.500)", price: 2000 },
-                        
-                        // Coca Descartable 1.5 Lt
-                        // DESCRIPCIÓN SIMPLIFICADA
-                        { name: "Coca Común (1.5Lt)", desc: "Descartable.", price: 4000 }, 
-                        
-                        // Gaseosas 1Lt
-                        // DESCRIPCIÓN SIMPLIFICADA
                         { name: "Gaseosas (1Lt)", desc: "Coca Común, Coca Zero, Fanta, Sprite.", price: 3500 },
                         
                         // Cervezas (Rubias y Clásicas)
                         { name: "Cervezas (Rubias y Clásicas)", desc: "", isSubSection: true },
-                        // DESCRIPCIÓN SIMPLIFICADA
-                        { name: "Pampa Dorada", desc: "Rubia clásica y refrescante.", price: 4300 }, 
-                        // DESCRIPCIÓN SIMPLIFICADA
-                        { name: "Salta Rubia (473cc)", desc: "Rubia de cuerpo y sabor equilibrado.", price: 4300 },
-                        // DESCRIPCIÓN SIMPLIFICADA
-                        { name: "Budweiser", desc: "Rubia clásica.", price: 5500 }, 
-                        // DESCRIPCIÓN SIMPLIFICADA
-                        { name: "Corona", desc: "Cerveza importada y refrescante.", price: 6500 },   
+                        { name: "Pampa Dorada", desc: "Rubia clásica y refrescante.", price: 4500 }, 
+                        { name: "Salta Rubia (473cc)", desc: "Rubia de cuerpo y sabor equilibrado.", price: 4500 },
+                        { name: "Budweiser (710cc)", desc: "Rubia clásica.", price: 5500 }, 
+                        { name: "Corona (710cc)", desc: "Cerveza importada y refrescante.", price: 6500 },   
 
                         // Cervezas Negras
                         { name: "Cervezas Negras", desc: "", isSubSection: true },
-                        // DESCRIPCIÓN SIMPLIFICADA
                         { name: "Salta Negra (473cc)", desc: "De malta tostada.", price: 4500 },
-                        // DESCRIPCIÓN SIMPLIFICADA
                         { name: "Guinness", desc: "Stout cremosa y robusta.", price: 4500 },
 
                         // Vinos y Otros
                         { name: "Vinos y Otros", desc: "", isSubSection: true },
-                        // MODIFICADO: Descripción de Vinos mejorada y simplificada
-                        { name: "Don Valentín", desc: "Vino tinto de cuerpo medio. El acompañamiento ideal para un buen sánguche.", price: 7500 },
+                        { name: "Don Valentín", desc: "Vino tinto (botella 750cc).", price: 7500 },
                         { name: "Fernet (Vaso)", desc: "Con Coca Cola. ¡Listo para disfrutar!", price: 5000 }, 
                     ]
                 }
-            ];
-
-            // Promociones restantes: Solo las "Simples"
-            const promosData = [
-                {
-                    badge: "EL MÁS VENDIDO",
-                    badgeClass: "bg-orange-promo",
-                    name: "2 Lomitos Simples",
-                    oldPrice: 12000,
-                    newPrice: 11000,
-                    desc: "El doble del sabor que amas. Disfruta de la calidad del lomo con **extra mayonesa casera**. ¡Simplemente insuperable!",
-                },
-                
-                {
-                    badge: "CRUJIENTE DÚO",
-                    badgeClass: "bg-yellow-promo",
-                    name: "2 Milas Simples",
-                    oldPrice: 11000,
-                    newPrice: 10000,
-                    desc: "¡Doble porción de sabor! Milanesas rebozadas a mano **extra crujientes** gracias a nuestro pan rallado especial.",
-                },
-                
-                {
-                    badge: "NUEVO COMBO",
-                    badgeClass: "bg-green-promo",
-                    name: "2 Hamburguesas Simples",
-                    oldPrice: 8000,
-                    newPrice: 7000,
-                    desc: "Doble hamburguesa común: medallón de carne, lechuga, tomate y aderezos.",
-                },
             ];
 
             function formatPrice(price) {
@@ -276,35 +227,7 @@
 
                     html += `</div>`;
                 });
-
-                // --- 2. SECCIÓN DE PROMOCIONES ---
-                html += `
-                    <div class="category-title border-b-2 border-gray-300 mt-6">
-                        <h2 class="text-3xl font-extrabold text-green-600">PROMOCIONES</h2>
-                    </div>
-                    <div class="space-y-6 pt-4 pb-12">
-                `;
-
-                // Renderizar solo las promociones restantes
-                promosData.forEach(promo => {
-                    const descHtml = promo.desc ? promo.desc.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') : '';
-
-                    html += `
-                        <div class="promo-card">
-                            <span class="promo-badge ${promo.badgeClass}">${promo.badge}</span>
-                            <h3 class="text-2xl font-bold text-gray-800 mt-2">${promo.name}</h3>
-                            <p class="text-sm text-gray-600 mt-1">${descHtml}</p>
-                            <div class="flex justify-between items-center mt-3">
-                                <span class="old-price">${formatPrice(promo.oldPrice)}</span>
-                                <span class="promo-price">${formatPrice(promo.newPrice)}</span>
-                            </div>
-                        </div>
-                    `;
-                });
-
-                html += `</div>`;
-
-
+                
                 menuContainer.innerHTML = html;
             }
 
